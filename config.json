@@ -1,7 +1,6 @@
 {
   "snapshotBlockNumber": 13685625,
   "governance": "0x5efda50f22d34F262c29268506C5Fa42cB56A1Ce",
-  "tornadoTrees": "0x527653eA119F3E6a1F5BD18fbF4714081D7B31ce",
   "tornadoProxy": "0x722122dF12D4e14e13Ac3b6895a86e84145b6967",
   "tornadoVault": "0x2f50508a8a3d323b91336fa3ea6ae50e55f32185",
   "gasCompLogic": "0xFA4C1f3f7D5dd7c12a9Adb82Cd7dDA542E3d59ef",
@@ -46,7 +45,7 @@
       "instance": {
         "isERC20": false,
         "token": "0x0000000000000000000000000000000000000000",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 0,
         "protocolFeePercentage": 0
       }
@@ -56,7 +55,7 @@
       "instance": {
         "isERC20": false,
         "token": "0x0000000000000000000000000000000000000000",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 0,
         "protocolFeePercentage": 30
       }
@@ -66,7 +65,7 @@
       "instance": {
         "isERC20": false,
         "token": "0x0000000000000000000000000000000000000000",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 0,
         "protocolFeePercentage": 30
       }
@@ -76,7 +75,7 @@
       "instance": {
         "isERC20": false,
         "token": "0x0000000000000000000000000000000000000000",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 0,
         "protocolFeePercentage": 30
       }
@@ -86,7 +85,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 0
       }
@@ -96,7 +95,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 0
       }
@@ -106,7 +105,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 30
       }
@@ -116,7 +115,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 30
       }
@@ -126,7 +125,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 0
       }
@@ -136,7 +135,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 0
       }
@@ -146,7 +145,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 0
       }
@@ -156,7 +155,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 0
       }
@@ -206,7 +205,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 30
       }
@@ -216,7 +215,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 30
       }
@@ -226,7 +225,7 @@
       "instance": {
         "isERC20": true,
         "token": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
-        "state": 2,
+        "state": 1,
         "uniswapPoolSwappingFee": 3000,
         "protocolFeePercentage": 30
       }

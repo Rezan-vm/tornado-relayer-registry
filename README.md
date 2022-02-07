@@ -60,7 +60,6 @@ This contract is not called directly and instead only the logic is used by a con
 1. The Relayer Registry.
 2. The old Tornado Proxy.
 3. The new Tornado Proxy (TornadoProxyRegistryUpgrade).
-4. The Trees Contract.
 
 #### RelayerRegistry.sol
 
