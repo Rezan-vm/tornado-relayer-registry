@@ -7,7 +7,6 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/math/Math.sol";
 import "tornado-anonymity-mining/contracts/interfaces/ITornadoInstance.sol";
-import "tornado-anonymity-mining/contracts/interfaces/ITornadoTrees.sol";
 import "torn-token/contracts/ENS.sol";
 import "./InstanceRegistry.sol";
 import "../RelayerRegistry.sol";
@@ -20,7 +19,6 @@ contract TornadoRouter is EnsResolve {
   address public immutable governance;
   InstanceRegistry public immutable instanceRegistry;
   RelayerRegistry public immutable relayerRegistry;
-  ITornadoTrees public immutable tornadoTrees;
 
   modifier onlyGovernance() {
     require(msg.sender == governance, "Not authorized");
@@ -35,13 +33,11 @@ contract TornadoRouter is EnsResolve {
   constructor(
     address _governance,
     bytes32 _instanceRegistry,
-    bytes32 _relayerRegistry,
-    address _tornadoTrees
+    bytes32 _relayerRegistry
   ) public {
     governance = _governance;
     instanceRegistry = InstanceRegistry(resolve(_instanceRegistry));
     relayerRegistry = RelayerRegistry(resolve(_relayerRegistry));
-    tornadoTrees = ITornadoTrees(_tornadoTrees);
   }
 
   function deposit(
@@ -56,10 +52,6 @@ contract TornadoRouter is EnsResolve {
       token.safeTransferFrom(msg.sender, address(this), _tornado.denomination());
     }
     _tornado.deposit{ value: msg.value }(_commitment);
-
-    if (state == InstanceRegistry.InstanceState.MINEABLE) {
-      tornadoTrees.registerDeposit(address(_tornado), _commitment);
-    }
     emit EncryptedNote(msg.sender, _encryptedNote);
   }
 
@@ -78,9 +70,6 @@ contract TornadoRouter is EnsResolve {
     relayerRegistry.burn(msg.sender, _relayer, _tornado);
 
     _tornado.withdraw{ value: msg.value }(_proof, _root, _nullifierHash, _recipient, _relayer, _fee, _refund);
-    if (state == InstanceRegistry.InstanceState.MINEABLE) {
-      tornadoTrees.registerWithdrawal(address(_tornado), _nullifierHash);
-    }
   }
 
   /**

@@ -477,42 +477,6 @@ describe('General functionality tests', () => {
       expect(ethBalanceAfterWith).to.be.equal(ethBalanceAfterDep.sub(txFee))
       expect(tokenBalanceAfterWith).to.be.equal(tokenBalanceBeforeDep)
     })
-
-    it('anonymity mining feature should work for instances with MINEABLE state', async () => {
-      const [sender] = await ethers.getSigners()
-      const value = ethers.utils.parseEther('1000')
-      const note = notes[3]
-
-      const daiToken = await (await getToken(dai)).connect(daiWhale)
-      await daiToken.transfer(sender.address, value)
-      await daiToken.connect(sender).approve(tornadoRouter.address, value)
-
-      let tx = await makeDeposit({ note: note, proxy: tornadoRouter, instanceAddr: config.instances[5].addr })
-
-      // router should call tornadoTrees contract which emits DepositData event
-      let receipt = await tx.wait()
-      expect(receipt.events[3].topics[0]).to.be.equal(
-        '0xc711bd1d2cdd9c8978324cc83ce34c17f6ada898f8273efeb9585c1312d4ef67',
-      )
-
-      // no relayer
-      sender._address = '0x0000000000000000000000000000000000000000'
-
-      tx = await makeWithdraw({
-        note: note,
-        proxy: tornadoRouter,
-        recipient: sender.address,
-        relayerSigner: sender,
-        fee: 0,
-        instanceAddr: config.instances[5].addr,
-      })
-
-      // WithdrawalData event in tornadoTrees contract
-      receipt = await tx.wait()
-      expect(receipt.events[2].topics[0]).to.be.equal(
-        '0x5d3e96213d4520bdc95a25d628a39768f1a90a2b939894355479596910d179df',
-      )
-    })
   })
 
   describe('Governance functionality', () => {
@@ -1128,7 +1092,7 @@ describe('General functionality tests', () => {
 
       const instanceAddr = await instanceRegistry.instanceIds(4)
       const instanceState = await instanceRegistry.instances(instanceAddr)
-      expect(instanceState.state).to.be.equal(2)
+      expect(instanceState.state).to.be.equal(1)
 
       expect(await daiToken.allowance(tornadoRouter.address, instanceAddr)).to.be.equal(
         ethers.constants.MaxUint256,
@@ -1147,7 +1111,7 @@ describe('General functionality tests', () => {
 
       const tornados = await instanceRegistry.getAllInstances()
       const instanceAddr = tornados[4].addr
-      expect(tornados[4].instance.state).to.be.equal(2)
+      expect(tornados[4].instance.state).to.be.equal(1)
       expect(await daiToken.allowance(tornadoRouter.address, instanceAddr)).to.be.equal(
         ethers.constants.MaxUint256,
       )
@@ -1161,7 +1125,7 @@ describe('General functionality tests', () => {
       await instanceRegistry.connect(govSigner).updateInstance(tornados[4])
 
       const instanceStateAfterAdd = await instanceRegistry.instances(instanceAddr)
-      expect(instanceStateAfterAdd.state).to.be.equal(2)
+      expect(instanceStateAfterAdd.state).to.be.equal(1)
       expect(await daiToken.allowance(tornadoRouter.address, instanceAddr)).to.be.equal(
         ethers.constants.MaxUint256,
       )
@@ -1171,7 +1135,7 @@ describe('General functionality tests', () => {
       const govSigner = await getSignerFromAddress(config.governance)
 
       let tornados = await instanceRegistry.getAllInstances()
-      expect(tornados[0].instance.state).to.be.equal(2)
+      expect(tornados[0].instance.state).to.be.equal(1)
       const updatedTornado = {
         addr: tornados[0].addr,
         instance: {
@@ -1598,7 +1562,6 @@ describe('General functionality tests', () => {
       expect(await tornadoRouter.governance()).to.be.equal(config.governance)
       expect(await tornadoRouter.instanceRegistry()).to.be.equal(instanceRegistry.address)
       expect(await tornadoRouter.relayerRegistry()).to.be.equal(relayerRegistry.address)
-      expect(await tornadoRouter.tornadoTrees()).to.be.equal(config.tornadoTrees)
     })
 
     it('gov should be able to claim junk and accidentally sent tokens', async () => {

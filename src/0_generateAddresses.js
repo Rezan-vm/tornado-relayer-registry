@@ -44,7 +44,6 @@ async function generate() {
         governance,
         namehash.hash(mainnet.ens.InstanceRegistry.domain),
         namehash.hash(mainnet.ens.RelayerRegistry.domain),
-        mainnet.tornadoTrees,
       ])
       .slice(2)
 

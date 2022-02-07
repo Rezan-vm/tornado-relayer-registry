@@ -18,7 +18,6 @@ import { FeeManager } from "./tornado-proxy/FeeManager.sol";
 import { InstanceRegistry } from "./tornado-proxy/InstanceRegistry.sol";
 
 import { TornadoProxy, ITornadoInstance } from "tornado-anonymity-mining/contracts/TornadoProxy.sol";
-import { TornadoTrees } from "tornado-trees/contracts/TornadoTrees.sol";
 
 contract RelayerRegistryProposal is ImmutableGovernanceInformation {
   using SafeMath for uint256;
@@ -33,8 +32,6 @@ contract RelayerRegistryProposal is ImmutableGovernanceInformation {
   address public immutable oldTornadoProxy;
   address public immutable gasCompLogic;
   address public immutable tornadoVault;
-
-  address public constant tornadoTreesAddress = 0x527653eA119F3E6a1F5BD18fbF4714081D7B31ce;
 
   constructor(
     address _oldTornadoProxy,
@@ -68,7 +65,6 @@ contract RelayerRegistryProposal is ImmutableGovernanceInformation {
     feeManager.setPeriodForTWAPOracle(5400);
     feeManager.setUniswapTornPoolSwappingFee(10000); // uniswap TORN/ETH pool with 1% fee
     feeManager.setUpdateFeeTimeLimit(172800); // 2 days
-    TornadoTrees(tornadoTreesAddress).setTornadoProxyContract(address(tornadoRouter));
 
     LoopbackProxy(returnPayableGovernance()).upgradeTo(
       address(new GovernanceStakingUpgrade(address(staking), gasCompLogic, tornadoVault))

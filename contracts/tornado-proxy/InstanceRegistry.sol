@@ -16,8 +16,7 @@ contract InstanceRegistry is Initializable, EnsResolve {
 
   enum InstanceState {
     DISABLED,
-    ENABLED,
-    MINEABLE
+    ENABLED
   }
 
   struct Instance {
